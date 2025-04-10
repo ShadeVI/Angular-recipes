@@ -1,1 +1,8 @@
 <p>recipes works!</p>
+@for (recipe of recipesList(); track recipe.id){
+  <div class="recipe">
+    <h2>{{ recipe.name }}</h2>
+    <p>Rating: {{ recipe.rating }}</p>
+    <img [src]="recipe.image" alt="{{ recipe.name }}" />
+  </div>
+}
