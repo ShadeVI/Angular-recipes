@@ -1,10 +1,12 @@
 <header>
-  <nav class="h-20 bg-amber-200 p-4 flex justify-center items-center gap-4">
-    <a routerLink="/">Home</a>
-    <a routerLink="/about">About</a>
-    <a routerLink="/recipes">Contact</a>
+  <nav class="h-20 bg-amber-200 p-4 flex justify-between items-center">
+    <span class="text-2xl text-center py-4">{{logoTitle}}</span>
+    <div class="flex justify-center gap-4 text-lg text-gray-700">
+      <a routerLink="/" routerLinkActive="text-red-500" [routerLinkActiveOptions]="{exact: true}" class="hover:underline">Home</a>
+      <a routerLink="/about" routerLinkActive="text-red-500" class="hover:underline">About</a>
+      <a routerLink="/recipes" routerLinkActive="text-red-500" class="hover:underline">Recipes</a>
+    </div>
   </nav>
-  <h1 class="text-4xl">My Recipes App</h1>
 </header>
 <main>
   <router-outlet />
