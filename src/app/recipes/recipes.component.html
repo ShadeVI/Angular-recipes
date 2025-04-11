@@ -1,8 +1,5 @@
-<p>recipes works!</p>
-@for (recipe of recipesList(); track recipe.id){
-  <div class="recipe">
-    <h2>{{ recipe.name }}</h2>
-    <p>Rating: {{ recipe.rating }}</p>
-    <img [src]="recipe.image" alt="{{ recipe.name }}" />
-  </div>
-}
+<div class="flex justify-center items-center gap-4 flex-wrap p-12 m-auto">
+  @for (recipe of recipesList(); track recipe.id){
+    <app-recipe-card [recipe]="recipe" />
+  }
+</div>
