@@ -1,0 +1,12 @@
+<div class="p-8 bg-amber-200 rounded-lg shadow-md hover:scale-[1.05] transition-transform duration-300 ease-in-out">
+  <h2 class="text-xl text-center">{{ recipe()?.name }}</h2>
+  <div class="flex justify-between items-center my-5">
+
+    <p>Rating: {{ recipe()?.rating }}</p>
+    <a routerLink="{{recipe()?.id}}" class="underline">Check recipe</a>
+  </div>
+  <picture>
+    <source srcset="{{ recipe()?.image }}" />
+    <img [src]="recipe()?.image" alt="{{ recipe()?.name }}" class="rounded-xl  aspect-square w-[350px] h-[350px] object-cover " />
+  </picture>
+</div>
