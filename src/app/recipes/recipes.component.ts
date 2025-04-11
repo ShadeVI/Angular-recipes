@@ -12,6 +12,8 @@ export class RecipesComponent {
   recipesList = this.recipeService.recipesList
 
   constructor() {
-    console.log(this.recipesList)
+    if (this.recipesList().length === 0) {
+      this.recipeService.fetchAllRecipes()
+    }
   }
 }
