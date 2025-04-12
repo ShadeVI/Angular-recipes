@@ -1,3 +1,34 @@
-<a routerLink="/recipes">Back to recipes</a>
-<p>recipe-detail works!</p>
-<p>Recipe ID: {{ recipeId }}</p>
+<section class="max-w-4xl mx-auto py-8 min-h-screen">
+  @if (recipeDetails()){
+    <div class="mx-auto flex justify-center">
+      <a routerLink="/recipes" class="py-1 px-2 border border-amber-700 bg-orange-400  rounded-2xl">Back to recipes</a>
+    </div>
+    <h2 class="text-3xl text-center mt-4 font-bold">{{recipeDetails()?.name}}</h2>
+    @defer {
+      <picture>
+        <img [src]="recipeDetails()?.image" alt="{{ recipeDetails()?.name }}" class="mx-auto mt-4 rounded-xl  aspect-square w-[350px] h-[350px] object-cover" />
+      </picture>
+    } @loading (minimum 1s){
+      <div class="mx-auto mt-4 w-[350px] h-[350px] bg-gray-200 animate-pulse rounded-xl"></div>
+    }
+     @placeholder {
+      <div class="mx-auto mt-4 w-[350px] h-[350px] bg-gray-200 rounded-xl"></div>
+    }
+    <div class="flex flex-col items-center mt-4">
+      <h3 class="text-2xl text-center mt-4 font-bold">Ingredients</h3>
+      <ul class="list-disc list-inside mt-4">
+        @for (ingredient of recipeDetails()?.ingredients; track ingredient){
+          <li>{{ingredient}}</li>
+        }
+      </ul>
+    </div>
+    <div class="flex flex-col items-center mt-4">
+      <h3 class="text-2xl text-center mt-4 font-bold">Instructions</h3>
+      <ul class="list-decimal max-w-[400px] mx-auto">
+        @for (instruction of recipeDetails()?.instructions; track $index){
+          <li>{{instruction}}</li>
+        }
+      </ul>
+    </div>
+  }
+</section>
