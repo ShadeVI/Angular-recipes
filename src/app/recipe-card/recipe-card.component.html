@@ -3,10 +3,16 @@
   <div class="flex justify-between items-center my-5">
 
     <p>Rating: {{ recipe()?.rating }}</p>
-    <a routerLink="{{recipe()?.id}}" class="underline">Check recipe</a>
+    <a routerLink="/recipes/{{recipe()?.id}}" class="underline">Check recipe</a>
   </div>
-  <picture>
-    <source srcset="{{ recipe()?.image }}" />
-    <img [src]="recipe()?.image" alt="{{ recipe()?.name }}" class="rounded-xl  aspect-square w-[350px] h-[350px] object-cover " />
-  </picture>
+  @defer{
+    <picture>
+      <img [src]="recipe()?.image" alt="{{ recipe()?.name }}" class="rounded-xl  aspect-square w-[350px] h-[350px] object-cover "/>
+    </picture>
+  } @loading (minimum 1s){
+    <div class="mx-auto mt-4 w-[350px] h-[350px] bg-gray-200 animate-pulse rounded-xl"></div>
+  }
+  @placeholder {
+    <div class="mx-auto mt-4 w-[350px] h-[350px] bg-gray-200 rounded-xl"></div>
+  }
 </div>
