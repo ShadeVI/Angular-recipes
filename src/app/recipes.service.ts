@@ -15,7 +15,7 @@ export class RecipesService {
   }
 
   async fetchAllRecipes() {
-    this.http.get<{ recipes: Recipe[], total: number, skip: number, limit: number }>(this.baseUrl + this.recipesUrl).subscribe((data) => {
+    this.http.get<{ recipes: Recipe[], total: number, skip: number, limit: number }>(new URL(this.recipesUrl, this.baseUrl).href).subscribe((data) => {
       this.recipesList.set(data.recipes)
     })
     /* fetch(this.baseUrl + this.recipesUrl)
@@ -26,5 +26,9 @@ export class RecipesService {
       .catch(error => {
         console.error('Error fetching recipes:', error);
       }).finally(() => { console.log("Fetch done") }); */
+  }
+
+  fetchRecipeDetails(id: number) {
+    return this.http.get<Recipe>(new URL(`${this.recipesUrl}/${id}`, this.baseUrl).href)
   }
 }
