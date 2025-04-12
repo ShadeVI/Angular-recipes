@@ -19,18 +19,24 @@ export const routes: Routes = [
   },
   {
     path: "recipes",
-    loadComponent: () => import('./recipes/recipes.component').then(m => m.RecipesComponent),
-    data: {
-      title: "Recipes - My Recipes App",
-      description: "Browse through a collection of delicious recipes."
-    }
+    children: [
+      {
+        path: "",
+        loadComponent: () => import('./recipes/recipes.component').then(m => m.RecipesComponent),
+        data: {
+          title: "Recipes - My Recipes App",
+          description: "Browse through a collection of delicious recipes."
+        }
+      },
+      {
+        path: ":id",
+        loadComponent: () => import('./recipe-detail/recipe-detail.component').then(m => m.RecipeDetailComponent),
+        data: {
+          title: "Recipe Detail - My Recipes App",
+          description: "View the details of a specific recipe."
+        }
+      }
+    ]
   },
-  {
-    path: "recipes/:id",
-    loadComponent: () => import('./recipe-detail/recipe-detail.component').then(m => m.RecipeDetailComponent),
-    data: {
-      title: "Recipe Detail - My Recipes App",
-      description: "View the details of a specific recipe."
-    }
-  }
+
 ];
